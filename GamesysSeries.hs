@@ -2,6 +2,8 @@ module GamesysSeries (growth, first, series) where
 
 import System.Environment
 
+import Data.List (sort)
+
 -- | 'first' calculates the first number in the sequence
 first :: Float -> Float
 first x = ((0.5 * (x**2)) + (30 * x) + 10) / 25
@@ -34,12 +36,17 @@ series x y =
 
 main = do
     (x':y':l':_) <- getArgs
-    let x  = read x'
-        y  = read y'
-        l  = read l' :: Int
-        fs = first x
-        gr = growth fs y
-        xs = take l $ series x y
+    let x   = read x'
+        y   = read y'
+        l   = read l' :: Int
+        fs  = first x
+        gr  = growth fs y
+        xs  = take l $ series x y
+        xs' = sort xs
+        rnd x = (fromIntegral $ round (x*4)) / 4
+        xs'' = map rnd xs'
     putStrLn $ "First: "  ++ show fs
     putStrLn $ "Growth: " ++ show gr
     putStrLn $ "Series: " ++ show xs
+    putStrLn $ "- sorted: " ++ show xs'
+    putStrLn $ "- rounded: " ++ show xs''
