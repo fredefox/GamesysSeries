@@ -1,6 +1,10 @@
+Prerequisites
+=============
+It is assumed that the `haskell` is installed on the machine. No external
+libraries are used.
+
 Running
 =======
-
 This program should be invoked with
 
     runghc GamesysSeries.hs $X $Y0 $L $Y1 $Z
