@@ -1,3 +1,4 @@
+module GamesysSeries (growth, first, series) where
 import Debug.Trace
 
 -- | 'first' calculates the first number in the sequence
