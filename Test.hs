@@ -28,4 +28,8 @@ main = do
             putStrLn ""
             return $ outp == expected
     results <- forM tests run
-    putStrLn $ show results
+    let successes = foldl (\acc x -> if x then succ acc else acc) 0 results
+        tests_performed = length tests
+    putStrLn "# Test Results"
+    putStrLn $ (show successes) ++ " of " ++ (show tests_performed)
+        ++ " test cases passed."
