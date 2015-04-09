@@ -34,14 +34,29 @@ series x y =
         srs i = gr * (fs ^ i) : (srs $ succ i)
     in fs : srs 1
 
+-- | 'closest' find's the element in @xs@ closest to @a@.
+closest :: Float -> [Float] -> Maybe Float
+closest a xs = v where
+    (v, _) = foldl closest' (Nothing, inf) xs
+    closest' :: (Maybe Float, Float) -> Float -> (Maybe Float, Float)
+    closest' prev@(v, d) x = let curr@(_, d') = (Just x, abs (x - a)) in
+        if d' < d
+            then curr
+            else prev
+    inf = 1/0 -- Constructor for infinity
+
 main = do
-    (x':y':l':_) <- getArgs
+    -- Part 1
+    -- ======
+    (x':y0':l':y1':z':_) <- getArgs
     let x   = read x'
-        y   = read y'
-        l   = read l' :: Int
+        y0  = read y0'
+        l   = read l'
+        y1  = read y1' :: Float
+        z   = read z' :: Float
         fs  = first x
-        gr  = growth fs y
-        xs  = take l $ series x y
+        gr  = growth fs y0
+        xs  = take l $ series x y0
         -- TODO: Now, there might be a subtlety in the assignment calling for
         -- a solutions that does not perform perform sorting.
         -- One alternative approach is this:
@@ -60,3 +75,18 @@ main = do
     putStrLn $ "Series: " ++ show xs
     putStrLn $ "- sorted: " ++ show xs'
     putStrLn $ "- rounded: " ++ show xs''
+    -- Part 2
+    -- ======
+    -- Part two asks for the "product of the following function"
+    -- I will assume that what was actually meant was *result*
+    -- and not the *product*
+    let n1 = let l = length xs'' in
+            if l < 3
+                then error "Series is not long enough"
+                else xs'' !! (l - 3)
+        cand    = y1 / z
+        -- We can assume that there will be a closest element -
+        -- we have just checked if the list is at least 3 elements long
+        Just cl = closest cand xs''
+    putStrLn $ "Candidate: " ++ show cand
+    putStrLn $ "Closest: " ++ show cl
