@@ -1,4 +1,4 @@
-module GamesysSeries (growth, first, series) where
+module GamesysSeries (growth, first, series, main) where
 
 import System.Environment
 
@@ -6,7 +6,7 @@ import Data.List (sort)
 
 -- | 'first' calculates the first number in the sequence
 first :: Float -> Float
-first x = ((0.5 * (x**2)) + (30 * x) + 10) / 25
+first x = (((x^2) / 2) + (30 * x) + 10) / 25
 
 -- | 'growth' assumes that it's first input @x@ is the first number
 -- i.e. *not* the parameter to 'first'.
@@ -91,3 +91,10 @@ main = do
     putStrLn $ "Third largest " ++ show n1
     putStrLn $ "Candidate: " ++ show cand
     putStrLn $ "Closest: " ++ show cl
+    return
+        ( fs
+        , gr
+        , xs''
+        , n1
+        , cl
+        )
