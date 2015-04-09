@@ -40,7 +40,7 @@ output:
 
 The responses to the different tasks can be read from this output.
 
-The numbers reffered to as "special numbers" are "Third largest" and "Closest"
+The numbers referred to as "special numbers" are "Third largest" and "Closest"
 respectively.
 
 Testing
