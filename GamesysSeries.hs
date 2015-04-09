@@ -1,5 +1,6 @@
 module GamesysSeries (growth, first, series) where
-import Debug.Trace
+
+import System.Environment
 
 -- | 'first' calculates the first number in the sequence
 first :: Float -> Float
@@ -30,3 +31,15 @@ series x y =
         srs :: Int -> [Float]
         srs i = gr * (fs ^ i) : (srs $ succ i)
     in fs : srs 1
+
+main = do
+    (x':y':l':_) <- getArgs
+    let x  = read x'
+        y  = read y'
+        l  = read l' :: Int
+        fs = first x
+        gr = growth fs y
+        xs = take l $ series x y
+    putStrLn $ "First: "  ++ show fs
+    putStrLn $ "Growth: " ++ show gr
+    putStrLn $ "Series: " ++ show xs
