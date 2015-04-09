@@ -42,6 +42,16 @@ main = do
         fs  = first x
         gr  = growth fs y
         xs  = take l $ series x y
+        -- TODO: Now, there might be a subtlety in the assignment calling for
+        -- a solutions that does not perform perform sorting.
+        -- One alternative approach is this:
+        --
+        --  1 <= x          => series x y # is sorted
+        --  0 <= x && x < 1 => series x y # is in reverse
+        -- -1 <= x && x < 0 => series x y # is in reverse,
+        --                                  except for alternation
+        --            x < 1 => series x y # is sorted,
+        --                                  except for alternation
         xs' = sort xs
         rnd x = (fromIntegral $ round (x*4)) / 4
         xs'' = map rnd xs'
