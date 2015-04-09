@@ -1,3 +1,10 @@
+Introduction
+============
+Read this file to understand how to interact with the solution but please look
+at the code for additional information.
+
+The source code is annotated with comments where appropriate.
+
 Prerequisites
 =============
 It is assumed that the `haskell` is installed on the machine. No external
@@ -35,3 +42,13 @@ The responses to the different tasks can be read from this output.
 
 The numbers reffered to as "special numbers" are "Third largest" and "Closest"
 respectively.
+
+Testing
+=======
+Tests are included in `Test.hs`. Do
+
+    runghc Test.hs
+
+To see the results of running the tests. This will output the result of each
+individual test-case as well as a summary.
+
