@@ -88,5 +88,6 @@ main = do
         -- We can assume that there will be a closest element -
         -- we have just checked if the list is at least 3 elements long
         Just cl = closest cand xs''
+    putStrLn $ "Third largest " ++ show n1
     putStrLn $ "Candidate: " ++ show cand
     putStrLn $ "Closest: " ++ show cl
